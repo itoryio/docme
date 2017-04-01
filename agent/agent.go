@@ -2,6 +2,7 @@ package agent
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/itoryio/docme/storage"
 
@@ -40,8 +41,8 @@ func initialization() {
 		h = driver.NewHandler(d)
 	}
 
-	err := h.ServeTCP("docme", "localhost:8080", nil)
-	//err := h.ServeUnix("docme", os.Getegid())
+	//err := h.ServeTCP("docme", "localhost:8080", nil)
+	err := h.ServeUnix("docme", os.Getegid())
 	fmt.Printf("Data: %v", h)
 	if err != nil {
 		fmt.Println(err.Error())
